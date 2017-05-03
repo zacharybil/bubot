@@ -5,6 +5,8 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const Events = Discordie.Events;
 const client = new Discordie();
 
+http.createServer(function (request, response) {}).listen(process.env.PORT || 5000)
+
 client.connect({
     token: 'MzA4OTI1NDQ1NDIyNzEwNzg0.C-n8yg.R3tQ9REw4fp3RIJJjRzB4OYUCVg'
 })
