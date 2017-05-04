@@ -1,6 +1,6 @@
 var Discordie = require('discordie');
 var http = require('http');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 const Events = Discordie.Events;
 const client = new Discordie();
@@ -25,9 +25,9 @@ var giphyThis = (query, discordEvent, outputMethod, limit) => {
         }
     };
     
-    var url = "http://api.giphy.com/v1/gifs/search?q=" + query + "&api_key=dc6zaTOxFJmzC&limit=" + limit;
+    var url = 'http://api.giphy.com/v1/gifs/search?q=' + query + '&api_key=dc6zaTOxFJmzC&limit=' + limit;
     console.log(url);
-    xhr.open("GET", url);
+    xhr.open('GET', url);
     xhr.send();
 }
 
@@ -54,16 +54,27 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+var randomGreetings = ['yo', 'hi', 'hi there', 'what up homie', 'hey dood', 'hey man', 'greetings'];
+
 client.Dispatcher.on(Events.MESSAGE_CREATE, discordEvent => {
     console.log(discordEvent.message.content);
-    if (discordEvent.message.content == "/bubot help") {
-        discordEvent.message.channel.sendMessage("use /bubot gifme cats or /bubot gifbomb cats 3");
+    if (discordEvent.message.content == 'bubot' ||
+        discordEvent.message.content == 'yo' ||
+        discordEvent.message.content == 'hey' ||
+        discordEvent.message.content == 'what up' ||
+        discordEvent.message.content == 'hi' ||
+        discordEvent.message.content == 'hello') {
+        var random = getRandomInt(0, randomGreetings.length-1);
+        discordEvent.message.channel.sendMessage(randomGreetings[random]);
+        } 
+    if (discordEvent.message.content == '/bubot help') {
+        discordEvent.message.channel.sendMessage('use /bubot gifme cats or /bubot gifbomb cats 3');
     }
-    if (discordEvent.message.content == "reuben") {
-        discordEvent.message.channel.sendMessage("is fab");
+    if (discordEvent.message.content == 'reuben') {
+        discordEvent.message.channel.sendMessage('is fab');
     }
-    if (discordEvent.message.content == "zac") {
-        discordEvent.message.channel.sendMessage("is awesome");
+    if (discordEvent.message.content == 'zac') {
+        discordEvent.message.channel.sendMessage('is awesome');
     }
     if (discordEvent.message.content.startsWith('/bubot gifme ')) {
         var query = discordEvent.message.content;
