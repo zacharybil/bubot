@@ -57,6 +57,8 @@ function getRandomInt(min, max) {
 var randomGreetings = ['yo', 'hi', 'hi there', 'what up homie', 'hey dood', 'hey man', 'greetings'];
 
 client.Dispatcher.on(Events.MESSAGE_CREATE, discordEvent => {
+    // This is the bots id, should find a better way to check this.
+    if (discordEvent.message.author == '308925445422710784') return;
     console.log(discordEvent.message.author + ': ' + discordEvent.message.content);
     if (discordEvent.message.content == 'bubot' ||
         discordEvent.message.content == 'yo' ||
