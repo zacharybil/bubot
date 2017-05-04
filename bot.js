@@ -57,7 +57,7 @@ function getRandomInt(min, max) {
 var randomGreetings = ['yo', 'hi', 'hi there', 'what up homie', 'hey dood', 'hey man', 'greetings'];
 
 client.Dispatcher.on(Events.MESSAGE_CREATE, discordEvent => {
-    console.log(discordEvent.message.content);
+    console.log(discordEvent.message.author + ': ' + discordEvent.message.content);
     if (discordEvent.message.content == 'bubot' ||
         discordEvent.message.content == 'yo' ||
         discordEvent.message.content == 'hey' ||
@@ -67,8 +67,8 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, discordEvent => {
         var random = getRandomInt(0, randomGreetings.length-1);
         discordEvent.message.channel.sendMessage(randomGreetings[random]);
         } 
-    if (discordEvent.message.content == '/bubot help') {
-        discordEvent.message.channel.sendMessage('use /bubot gifme cats or /bubot gifbomb cats 3');
+    if (discordEvent.message.content == 'bubot help') {
+        discordEvent.message.channel.sendMessage('use "bubot gifme cats" or "bubot gifbomb cats 3"');
     }
     if (discordEvent.message.content == 'reuben') {
         discordEvent.message.channel.sendMessage('is fab');
@@ -76,17 +76,17 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, discordEvent => {
     if (discordEvent.message.content == 'zac') {
         discordEvent.message.channel.sendMessage('is awesome');
     }
-    if (discordEvent.message.content.startsWith('/bubot gifme ')) {
+    if (discordEvent.message.content.startsWith('bubot gifme ')) {
         var query = discordEvent.message.content;
-        query = query.replace(/\/bubot gifme /g, '');
+        query = query.replace(/bubot gifme /g, '');
         query = query.replace(/ /g, '+');
         console.log(oneGiphy);
         giphyThis(query, discordEvent, oneGiphy, 20);
     }
-    if (discordEvent.message.content.startsWith('/bubot gifbomb ')) {
+    if (discordEvent.message.content.startsWith('bubot gifbomb ')) {
         var query = discordEvent.message.content;
         var split = query.split(' ');
-        query = query.replace(/\/bubot gifbomb /g, '');
+        query = query.replace(/bubot gifbomb /g, '');
         query = query.replace(/ /g, '+');
         
         var bombCount = split[split.length-1];
